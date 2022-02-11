@@ -59,6 +59,18 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 String longLoat = "longitude "+ longitude +"\nLatitude "+latitude;
                 Toast.makeText(mContext, longLoat, Toast.LENGTH_SHORT).show();
+                try {
+                    wv.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            wv.loadUrl("javascript:setLongLat('"+ longLoat +"')");
+                        }
+                    });
+
+                }catch (Exception ex){
+                    Toast.makeText(mContext, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
 //                [wv stringByEvaluatingJavaScriptFromString:@"document.getElementById('textFieldID').value = 'Hello World'"]
             }
 
